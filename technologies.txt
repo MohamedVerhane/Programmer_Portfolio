@@ -1,0 +1,48 @@
+Technologies Used in This Project
+=================================
+
+Core
+----
+- React 19 (UI library)
+- Vite 6 (build tool / dev server)
+- JavaScript (JSX), ES modules ("type": "module")
+
+Styling
+-------
+- Tailwind CSS v4 (utility-first CSS, @tailwindcss/vite plugin)
+- shadcn/ui components (Button, Card, Input, Textarea, Label, Badge, Separator) with Tailwind v4 theme tokens (zinc palette)
+- tw-animate-css (CSS animations for shadcn/ui)
+- Inter + JetBrains Mono (Google Fonts)
+
+Icons
+-----
+- react-icons (Tabler icon set, react-icons/tb)
+
+Animations
+----------
+- motion (formerly Framer Motion): scroll reveals, stagger, collapse, press effects
+- Custom shadcn-style motion primitives: InView, Stagger, Collapse, Pressable
+
+Utilities / Radix
+-----------------
+- @radix-ui/react-slot
+- @radix-ui/react-label
+- @radix-ui/react-separator
+- class-variance-authority (CVA)
+- clsx
+- tailwind-merge (via cn() helper)
+
+Assets
+------
+- Images from Unsplash (free for commercial use, Unsplash License) stored locally in public/images/
+
+Environment
+-----------
+- Node.js 24
+- npm 11 (esbuild postinstall approved via allowScripts)
+
+Scripts
+-------
+- npm run dev (start dev server)
+- npm run build (production build)
+- npm run preview (preview production build)
