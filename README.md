@@ -43,6 +43,23 @@ Open http://localhost:5173 in your browser.
 | `npm run build`    | Create a production build       |
 | `npm run preview`  | Preview the production build    |
 
+## 🐳 Docker
+
+The included `Dockerfile` builds the app in a Node stage and serves it with Nginx.
+
+```bash
+docker build -t learnrjs .
+docker run -d -p 8080:80 learnrjs
+```
+
+Or with Docker Compose:
+
+```bash
+docker compose up -d
+```
+
+Open http://localhost:8080. Nginx is configured for the SPA (fallback to `index.html`) with gzip and long-term caching for hashed assets.
+
 ## 📁 Project Structure
 
 ```
