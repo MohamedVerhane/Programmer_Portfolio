@@ -6,6 +6,7 @@ A modern, animated portfolio website built with **React 19**, **Vite**, **Tailwi
 
 - Modern shadcn/ui design with a zinc color theme
 - Dark / light mode toggle (persisted to `localStorage`)
+- Bilingual: English + Arabic with automatic RTL layout (toggle in header, persisted)
 - Scroll-reveal animations powered by Motion (InView, Stagger, Collapse, Pressable)
 - Fully responsive layout (mobile menu with animated collapse)
 - Project cards with images (free-for-commercial-use from Unsplash, stored locally)
@@ -51,10 +52,12 @@ Open http://localhost:5173 in your browser.
 │   ├── components/
 │   │   ├── sections/      # Hero, About, Skills, Projects, Experience, Services, Contact
 │   │   ├── ui/            # shadcn/ui components + motion primitives
+│   │   ├── language-provider.jsx # EN/AR i18n + RTL switching
 │   │   ├── site-header.jsx
 │   │   ├── site-footer.jsx
 │   │   └── theme-provider.jsx
 │   ├── lib/
+│   │   ├── translations.js # All EN/AR strings
 │   │   └── utils.js       # cn() helper
 │   ├── App.jsx
 │   ├── index.css          # Tailwind v4 + shadcn theme
@@ -69,6 +72,7 @@ Open http://localhost:5173 in your browser.
 
 - **Colors / theme**: edit CSS variables in `src/index.css`
 - **Content**: edit the data arrays in `src/components/sections/*.jsx`
+- **Translations**: edit EN/AR strings in `src/lib/translations.js`
 - **Logo**: replace `public/images/logo.png`
 - **Fonts**: update the Google Fonts link in `index.html` and tokens in `src/index.css`
 

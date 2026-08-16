@@ -1,5 +1,6 @@
 import { MotionConfig } from "motion/react"
 import { ThemeProvider } from "@/components/theme-provider"
+import { LanguageProvider } from "@/components/language-provider"
 import SiteHeader from "@/components/site-header"
 import SiteFooter from "@/components/site-footer"
 import Hero from "@/components/sections/hero"
@@ -13,7 +14,8 @@ import Contact from "@/components/sections/contact"
 export default function App() {
   return (
     <MotionConfig reducedMotion="user">
-      <ThemeProvider>
+      <LanguageProvider>
+        <ThemeProvider>
         <SiteHeader />
         <main>
           <Hero />
@@ -25,7 +27,8 @@ export default function App() {
           <Contact />
         </main>
         <SiteFooter />
-      </ThemeProvider>
+        </ThemeProvider>
+      </LanguageProvider>
     </MotionConfig>
   )
 }

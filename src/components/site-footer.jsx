@@ -1,7 +1,11 @@
+import { useLanguage } from "@/components/language-provider"
+
 export default function SiteFooter() {
+  const { t } = useLanguage()
+
   return (
     <footer className="border-t">
-      <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 px-6 py-10 text-center sm:flex-row sm:justify-between sm:text-left">
+      <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 px-6 py-10 text-center sm:flex-row sm:justify-between sm:text-start">
         <a
           href="#top"
           className="flex items-center gap-2 font-semibold tracking-tight"
@@ -11,32 +15,32 @@ export default function SiteFooter() {
             alt="Programmer logo"
             className="size-8 rounded-md object-cover"
           />
-          Programmer
+          {t("brand")}
         </a>
         <p className="text-sm text-muted-foreground">
-          Designing and building for the web.
+          {t("footer.tagline")}
         </p>
         <nav className="flex gap-4 text-sm text-muted-foreground">
           <a href="#about" className="transition-colors hover:text-foreground">
-            About
+            {t("footer.about")}
           </a>
           <a
             href="#projects"
             className="transition-colors hover:text-foreground"
           >
-            Work
+            {t("footer.work")}
           </a>
           <a
             href="#contact"
             className="transition-colors hover:text-foreground"
           >
-            Contact
+            {t("footer.contact")}
           </a>
         </nav>
       </div>
       <div className="border-t">
         <div className="mx-auto max-w-6xl px-6 py-4 text-xs text-muted-foreground">
-          © 2026 Programmer. Built with React + shadcn/ui.
+          {t("footer.copyright")}
         </div>
       </div>
     </footer>

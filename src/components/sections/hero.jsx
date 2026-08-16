@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Stagger, StaggerItem } from "@/components/ui/motion-stagger"
+import { useLanguage } from "@/components/language-provider"
 
 const code = `const developer = {
   name: "Programmer",
@@ -13,6 +14,12 @@ const code = `const developer = {
 }`
 
 export default function Hero() {
+  const { lang, t } = useLanguage()
+  const textGradient =
+    lang === "ar"
+      ? "bg-gradient-to-l from-background via-background/40 to-transparent"
+      : "bg-gradient-to-r from-background via-background/40 to-transparent"
+
   return (
     <section id="top" className="relative overflow-hidden">
       <div aria-hidden="true" className="absolute inset-0">
@@ -22,7 +29,7 @@ export default function Hero() {
           loading="eager"
           className="size-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/40 to-transparent" />
+        <div className={`absolute inset-0 ${textGradient}`} />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/30" />
       </div>
       <div className="relative mx-auto grid min-h-[calc(100vh-4rem)] max-w-6xl items-center gap-16 px-6 py-20 lg:grid-cols-2">
@@ -35,33 +42,33 @@ export default function Hero() {
           <StaggerItem>
             <Badge variant="secondary" className="gap-2 px-3 py-1">
               <TbSparkles className="size-3.5 text-primary" />
-              Available for new projects
+              {t("hero.badge")}
             </Badge>
           </StaggerItem>
           <StaggerItem>
             <h1 className="text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
-              Hi, I'm Programmer.
+              {t("hero.greeting")}
               <br />
               <span className="text-muted-foreground">
-                Full-Stack Developer.
+                {t("hero.role")}
               </span>
             </h1>
           </StaggerItem>
           <StaggerItem>
             <p className="max-w-md text-lg text-muted-foreground">
-              I build modern, scalable, and user-focused digital experiences.
+              {t("hero.intro")}
             </p>
           </StaggerItem>
           <StaggerItem>
             <div className="flex flex-wrap gap-3">
               <Button size="lg" asChild>
                 <a href="#projects">
-                  View My Work <TbArrowDown />
+                  {t("hero.viewWork")} <TbArrowDown />
                 </a>
               </Button>
               <Button size="lg" variant="outline" asChild>
                 <a href="#contact">
-                  Contact Me <TbArrowUpRight />
+                  {t("hero.contactMe")} <TbArrowUpRight />
                 </a>
               </Button>
             </div>
@@ -78,7 +85,7 @@ export default function Hero() {
                 <span className="size-2.5 rounded-full bg-red-400" />
                 <span className="size-2.5 rounded-full bg-amber-400" />
                 <span className="size-2.5 rounded-full bg-emerald-400" />
-                <span className="ml-2 text-xs text-muted-foreground">
+                <span className="ms-2 text-xs text-muted-foreground">
                   portfolio.tsx
                 </span>
               </div>

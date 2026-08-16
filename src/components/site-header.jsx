@@ -4,13 +4,14 @@ import { Button } from "@/components/ui/button"
 import { Collapse } from "@/components/ui/motion-collapse"
 import { Pressable } from "@/components/ui/motion-pressable"
 import { useTheme } from "@/components/theme-provider"
+import { useLanguage } from "@/components/language-provider"
 
 const links = [
-  { label: "About", href: "#about" },
-  { label: "Skills", href: "#skills" },
-  { label: "Projects", href: "#projects" },
-  { label: "Experience", href: "#experience" },
-  { label: "Services", href: "#services" },
+  { key: "nav.about", href: "#about" },
+  { key: "nav.skills", href: "#skills" },
+  { key: "nav.projects", href: "#projects" },
+  { key: "nav.experience", href: "#experience" },
+  { key: "nav.services", href: "#services" },
 ]
 
 function ThemeToggle({ className }) {
@@ -27,8 +28,25 @@ function ThemeToggle({ className }) {
   )
 }
 
+function LangToggle({ className }) {
+  const { t, lang, setLang } = useLanguage()
+  return (
+    <Button
+      type="button"
+      variant="outline"
+      size="sm"
+      className={className}
+      onClick={() => setLang(lang === "ar" ? "en" : "ar")}
+      aria-label="Switch language"
+    >
+      <span className="text-xs font-semibold">{t("lang.toggle")}</span>
+    </Button>
+  )
+}
+
 export default function SiteHeader() {
   const [open, setOpen] = useState(false)
+  const { t } = useLanguage()
 
   return (
     <header className="sticky top-0 z-50 border-b bg-background/80 backdrop-blur">
@@ -42,23 +60,29 @@ export default function SiteHeader() {
             alt="Programmer logo"
             className="size-8 rounded-md object-cover"
           />
-          Programmer
+          {t("brand")}
         </a>
         <nav className="hidden items-center gap-1 md:flex">
           {links.map((link) => (
             <Button key={link.href} variant="ghost" asChild>
-              <a href={link.href}>{link.label}</a>
+              <a href={link.href}>{t(link.key)}</a>
             </Button>
           ))}
-          <Button asChild className="ml-2">
+          <Button asChild className="ms-2">
             <a href="#contact">
-              Let's talk <TbArrowUpRight />
+              {t("nav.cta")} <TbArrowUpRight />
             </a>
           </Button>
-          <ThemeToggle />
+          <div className="ms-2 flex items-center gap-2">
+            <ThemeToggle />
+            <LangToggle />
+          </div>
         </nav>
         <div className="flex items-center gap-2 md:hidden">
-          <ThemeToggle />
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+            <LangToggle />
+          </div>
           <Pressable
             type="button"
             className="flex size-9 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
@@ -81,12 +105,12 @@ export default function SiteHeader() {
                 className="justify-start"
                 onClick={() => setOpen(false)}
               >
-                <a href={link.href}>{link.label}</a>
+                <a href={link.href}>{t(link.key)}</a>
               </Button>
             ))}
             <Button asChild className="mt-2" onClick={() => setOpen(false)}>
               <a href="#contact">
-                Let's talk <TbArrowUpRight />
+                {t("nav.cta")} <TbArrowUpRight />
               </a>
             </Button>
           </div>
