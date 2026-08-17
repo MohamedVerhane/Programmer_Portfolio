@@ -13,7 +13,7 @@ export const translations = {
     "lang.toggle": "عربي",
 
     "hero.badge": "Available for new projects",
-    "hero.greeting": "Hi, I'm Programmer.",
+    "hero.greeting": "I'm Programmer.",
     "hero.role": "Full-Stack Developer.",
     "hero.intro":
       "I build modern, scalable, and user-focused digital experiences.",
@@ -134,7 +134,7 @@ export const translations = {
     "lang.toggle": "English",
 
     "hero.badge": "متاح لمشاريع جديدة",
-    "hero.greeting": "مرحبًا، أنا Programmer.",
+    "hero.greeting": "أنا Programmer.",
     "hero.role": "مطوّر فول ستاك.",
     "hero.intro":
       "أبني تجارب رقمية حديثة وقابلة للتوسع ومركّزة على المستخدم.",

@@ -1,15 +1,16 @@
 import { TbArrowRight } from "react-icons/tb"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
+import { CountUp } from "@/components/ui/motion-count-up"
 import { InView } from "@/components/ui/motion-in-view"
 import { Stagger, StaggerItem } from "@/components/ui/motion-stagger"
 import { useLanguage } from "@/components/language-provider"
 
 const stats = [
-  { value: "3+", key: "about.stat1" },
-  { value: "20+", key: "about.stat2" },
-  { value: "10+", key: "about.stat3" },
-  { value: "100%", key: "about.stat4" },
+  { target: 3, suffix: "+", key: "about.stat1" },
+  { target: 20, suffix: "+", key: "about.stat2" },
+  { target: 10, suffix: "+", key: "about.stat3" },
+  { target: 100, suffix: "%", key: "about.stat4" },
 ]
 
 export default function About() {
@@ -55,7 +56,7 @@ export default function About() {
             <Card className="group transition-all duration-300 hover:border-primary/20 hover:shadow-md">
               <CardContent className="flex flex-col gap-1.5 p-6">
                 <span className="text-3xl font-extrabold tracking-tight text-primary">
-                  {stat.value}
+                  <CountUp target={stat.target} suffix={stat.suffix} />
                 </span>
                 <span className="text-sm text-muted-foreground">
                   {t(stat.key)}
