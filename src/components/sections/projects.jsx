@@ -40,18 +40,18 @@ export default function Projects() {
   const { t } = useLanguage()
 
   return (
-    <section id="projects" className="mx-auto max-w-6xl px-6 py-24">
+    <section id="projects" className="mx-auto max-w-6xl px-6 py-28">
       <div className="mb-12 flex flex-wrap items-end justify-between gap-6">
         <div>
-          <InView className="mb-3 text-sm font-medium uppercase tracking-widest text-muted-foreground">
+          <InView className="mb-3 text-sm font-medium uppercase tracking-widest text-primary/70">
             {t("projects.label")}
           </InView>
-          <InView className="text-3xl font-bold tracking-tight sm:text-4xl">
+          <InView className="text-3xl font-extrabold tracking-tight sm:text-4xl">
             <h2>{t("projects.heading")}</h2>
           </InView>
         </div>
         <InView delay={0.1}>
-          <Button variant="outline" asChild>
+          <Button variant="outline" asChild className="border-primary/20">
             <a href="https://github.com/" target="_blank" rel="noreferrer">
               {t("projects.github")} <TbArrowUpRight />
             </a>
@@ -61,7 +61,7 @@ export default function Projects() {
       <Stagger className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {projects.map((project) => (
           <StaggerItem key={project.number}>
-            <Card className="group h-full overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg">
+            <Card className="group h-full overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/[0.04]">
               <div className="relative aspect-[16/10] overflow-hidden">
                 <img
                   src={project.image}
@@ -69,20 +69,20 @@ export default function Projects() {
                   loading="lazy"
                   className="size-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                <span className="absolute start-4 top-4 rounded-md bg-background/80 px-2 py-1 text-xs font-bold tracking-widest text-foreground backdrop-blur">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                <span className="absolute start-4 top-4 rounded-lg bg-primary/90 px-2.5 py-1 text-xs font-bold tracking-widest text-primary-foreground backdrop-blur">
                   {project.number}
                 </span>
               </div>
               <CardContent className="flex flex-1 flex-col gap-3 p-6">
-                <span className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
+                <span className="text-xs font-medium uppercase tracking-widest text-primary/60">
                   {t(project.typeKey)}
                 </span>
                 <h3 className="text-xl font-semibold">{t(project.titleKey)}</h3>
-                <p className="text-sm text-muted-foreground">{t(project.descKey)}</p>
+                <p className="text-sm leading-relaxed text-muted-foreground">{t(project.descKey)}</p>
                 <div className="mt-auto flex flex-wrap gap-2 pt-3">
                   {project.tags.map((tag) => (
-                    <Badge key={tag} variant="outline">
+                    <Badge key={tag} variant="secondary" className="border-primary/[0.06]">
                       {tag}
                     </Badge>
                   ))}
@@ -90,7 +90,7 @@ export default function Projects() {
                 <Button
                   variant="ghost"
                   asChild
-                  className="mt-2 w-fit rounded-full px-3"
+                  className="mt-2 w-fit rounded-full px-3 text-primary hover:bg-primary/5"
                 >
                   <a
                     href="#contact"

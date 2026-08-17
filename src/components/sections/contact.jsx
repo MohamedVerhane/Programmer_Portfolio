@@ -32,12 +32,12 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="mx-auto max-w-6xl px-6 py-24">
+    <section id="contact" className="mx-auto max-w-6xl px-6 py-28">
       <div className="mb-12 max-w-2xl">
-        <InView className="mb-3 text-sm font-medium uppercase tracking-widest text-muted-foreground">
+        <InView className="mb-3 text-sm font-medium uppercase tracking-widest text-primary/70">
           {t("contact.label")}
         </InView>
-        <InView className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
+        <InView className="mb-4 text-3xl font-extrabold tracking-tight sm:text-4xl">
           <h2>{t("contact.heading")}</h2>
         </InView>
         <InView delay={0.1} className="text-muted-foreground">
@@ -83,11 +83,11 @@ export default function Contact() {
                     required
                   />
                 </div>
-                <Button type="submit" className="w-fit">
+                <Button type="submit" className="w-fit shadow-md shadow-primary/20">
                   {t("contact.submit")} <TbSend />
                 </Button>
                 {status && (
-                  <p className="text-sm text-muted-foreground" role="status">
+                  <p className="text-sm text-primary" role="status">
                     {status}
                   </p>
                 )}
@@ -101,7 +101,7 @@ export default function Contact() {
               <CardTitle>{t("contact.reachTitle")}</CardTitle>
             </CardHeader>
             <CardContent className="flex flex-col gap-3">
-              <Button variant="outline" asChild className="justify-start">
+              <Button variant="outline" asChild className="justify-start border-primary/20">
                 <a href="mailto:hello@yourname.dev">
                   <TbMail /> hello@yourname.dev
                   <TbArrowUpRight className="ms-auto" />
@@ -112,7 +112,7 @@ export default function Contact() {
                   key={labelKey}
                   variant="ghost"
                   asChild
-                  className="justify-start"
+                  className="justify-start hover:bg-primary/5 hover:text-primary"
                 >
                   <a href={href} target="_blank" rel="noreferrer">
                     <Icon /> {t(labelKey)}

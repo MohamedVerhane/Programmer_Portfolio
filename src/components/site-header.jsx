@@ -49,7 +49,7 @@ export default function SiteHeader() {
   const { t } = useLanguage()
 
   return (
-    <header className="sticky top-0 z-50 border-b bg-background/80 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-border/60 bg-background/70 backdrop-blur-xl dark:border-white/[0.06] dark:bg-background/80">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-6">
         <a
           href="#top"

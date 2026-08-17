@@ -36,21 +36,21 @@ export default function Experience() {
   const { t } = useLanguage()
 
   return (
-    <section id="experience" className="border-y bg-muted/40">
-      <div className="mx-auto max-w-6xl px-6 py-24">
+    <section id="experience" className="border-y bg-muted/30">
+      <div className="mx-auto max-w-6xl px-6 py-28">
         <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
           <div>
-            <InView className="mb-3 text-sm font-medium uppercase tracking-widest text-muted-foreground">
+            <InView className="mb-3 text-sm font-medium uppercase tracking-widest text-primary/70">
               {t("experience.label")}
             </InView>
-            <InView className="max-w-xl text-3xl font-bold tracking-tight sm:text-4xl">
+            <InView className="max-w-xl text-3xl font-extrabold tracking-tight sm:text-4xl">
               <h2>{t("experience.heading")}</h2>
             </InView>
           </div>
           <InView delay={0.1}>
             <Badge
               variant="secondary"
-              className="gap-1.5 px-3 py-1 text-xs font-medium"
+              className="gap-1.5 border-primary/10 bg-primary/5 px-3 py-1.5 text-xs font-medium text-primary"
             >
               <TbBriefcase className="size-3.5" /> {jobs.length}{" "}
               {t("experience.roles")}
@@ -60,11 +60,11 @@ export default function Experience() {
         <Stagger className="grid gap-5">
           {jobs.map((job) => (
             <StaggerItem key={job.initials}>
-              <Card className="transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md">
+              <Card className="group transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/20 hover:shadow-md">
                 <CardContent className="p-6 sm:p-8">
                   <div className="flex flex-wrap items-center justify-between gap-3">
-                    <div className="flex items-center gap-3">
-                      <span className="flex size-11 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-sm font-bold tracking-wide text-primary">
+                    <div className="flex items-center gap-4">
+                      <span className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-sm font-bold tracking-wide text-primary transition-colors group-hover:bg-primary/15">
                         {job.initials}
                       </span>
                       <div>
@@ -76,16 +76,16 @@ export default function Experience() {
                         </p>
                       </div>
                     </div>
-                    <Badge variant="outline" className="text-muted-foreground">
+                    <Badge variant="outline" className="border-primary/10 text-muted-foreground">
                       {t(job.dateKey)}
                     </Badge>
                   </div>
-                  <p className="mt-4 max-w-3xl text-sm text-muted-foreground">
+                  <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted-foreground">
                     {t(job.descKey)}
                   </p>
                   <div className="mt-5 flex flex-wrap gap-2">
                     {job.tags.map((tag) => (
-                      <Badge key={tag} variant="secondary">
+                      <Badge key={tag} variant="secondary" className="border-primary/[0.06]">
                         {tag}
                       </Badge>
                     ))}
