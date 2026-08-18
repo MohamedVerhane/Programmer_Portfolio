@@ -75,7 +75,7 @@ export default function Projects() {
         <InView delay={0.1}>
           <Button variant="outline" asChild className="border-primary/20">
             <a href="https://github.com/" target="_blank" rel="noreferrer">
-              {t("projects.github")} <TbArrowUpRight />
+              {t("projects.github")} <TbArrowUpRight aria-hidden="true" />
             </a>
           </Button>
         </InView>
@@ -122,7 +122,7 @@ export default function Projects() {
                     href="#contact"
                     aria-label={`${t(project.titleKey)} live demo`}
                   >
-                    {t("projects.liveDemo")} <TbArrowUpRight />
+                    {t("projects.liveDemo")} <TbArrowUpRight aria-hidden="true" />
                   </a>
                 </Button>
               </CardContent>

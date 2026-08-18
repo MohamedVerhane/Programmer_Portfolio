@@ -118,7 +118,7 @@ export const translations = {
     "footer.about": "About",
     "footer.work": "Work",
     "footer.contact": "Contact",
-    "footer.copyright": "© 2026 Programmer. Built with React + shadcn/ui.",
+    "footer.copyright": "Programmer. Built with React + shadcn/ui.",
   },
 
   ar: {
@@ -235,6 +235,6 @@ export const translations = {
     "footer.about": "من أنا",
     "footer.work": "الأعمال",
     "footer.contact": "تواصل",
-    "footer.copyright": "© ٢٠٢٦ Programmer. مبني بـ React + shadcn/ui.",
+    "footer.copyright": "Programmer. مبني بـ React + shadcn/ui.",
   },
 }

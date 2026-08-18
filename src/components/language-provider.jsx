@@ -1,16 +1,28 @@
-import { createContext, useContext, useEffect, useState } from "react"
-import { translations } from "../lib/translations"
+import { useCallback, useMemo } from "react"
+import { useAppSelector, useAppDispatch } from "@/store/hooks"
+import { setLang as setLangAction, selectLang } from "@/store/slices/languageSlice"
+import { translations } from "@/lib/translations"
+import { useEffect } from "react"
 
-const LanguageContext = createContext({
-  lang: "en",
-  setLang: () => {},
-  t: (key) => key,
-})
+export function useLanguage() {
+  const lang = useAppSelector(selectLang)
+  const dispatch = useAppDispatch()
 
-export function LanguageProvider({ children }) {
-  const [lang, setLang] = useState(
-    () => localStorage.getItem("lang") || "en"
+  const setLang = useCallback(
+    (l) => dispatch(setLangAction(l)),
+    [dispatch],
   )
+
+  const t = useCallback(
+    (key) => translations[lang][key] ?? translations.en[key] ?? key,
+    [lang],
+  )
+
+  return useMemo(() => ({ lang, setLang, t }), [lang, setLang, t])
+}
+
+export function LanguageEffect() {
+  const lang = useAppSelector(selectLang)
 
   useEffect(() => {
     const dir = lang === "ar" ? "rtl" : "ltr"
@@ -23,15 +35,5 @@ export function LanguageProvider({ children }) {
       ?.setAttribute("content", translations[lang]["meta.description"])
   }, [lang])
 
-  const t = (key) => translations[lang][key] ?? translations.en[key] ?? key
-
-  return (
-    <LanguageContext.Provider value={{ lang, setLang, t }}>
-      {children}
-    </LanguageContext.Provider>
-  )
-}
-
-export function useLanguage() {
-  return useContext(LanguageContext)
+  return null
 }

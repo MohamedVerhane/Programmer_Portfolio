@@ -1,5 +1,5 @@
 import { motion } from "motion/react"
-import { createContext, useContext } from "react"
+import { createContext, useContext, useMemo } from "react"
 import { cn } from "@/lib/utils"
 
 const StaggerContext = createContext({
@@ -8,6 +8,11 @@ const StaggerContext = createContext({
     animate: { opacity: 1, y: 0, transition: { duration: 0.4 } },
   },
 })
+
+const defaultChildVariants = {
+  initial: { opacity: 0, y: 24 },
+  animate: { opacity: 1, y: 0, transition: { duration: 0.4 } },
+}
 
 function useStagger() {
   return useContext(StaggerContext)
@@ -21,15 +26,13 @@ function Stagger({
   childVariants,
   ...props
 }) {
+  const value = useMemo(
+    () => ({ childVariants: childVariants ?? defaultChildVariants }),
+    [childVariants],
+  )
+
   return (
-    <StaggerContext.Provider
-      value={{
-        childVariants: childVariants ?? {
-          initial: { opacity: 0, y: 24 },
-          animate: { opacity: 1, y: 0, transition: { duration: 0.4 } },
-        },
-      }}
-    >
+    <StaggerContext.Provider value={value}>
       <motion.div
         data-slot="stagger"
         variants={{

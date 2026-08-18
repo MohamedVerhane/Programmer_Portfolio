@@ -1,4 +1,4 @@
-import { TbArrowRight } from "react-icons/tb"
+import { TbArrowLeft, TbArrowRight } from "react-icons/tb"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { CountUp } from "@/components/ui/motion-count-up"
@@ -14,7 +14,7 @@ const stats = [
 ]
 
 export default function About() {
-  const { t } = useLanguage()
+  const { lang, t } = useLanguage()
 
   return (
     <section id="about" className="mx-auto max-w-6xl px-6 py-28">
@@ -32,7 +32,7 @@ export default function About() {
           </div>
           <Button variant="link" asChild className="mt-6 w-fit px-0 text-primary">
             <a href="#contact">
-              {t("about.process")} <TbArrowRight />
+              {t("about.process")} {lang === "ar" ? <TbArrowLeft aria-hidden="true" /> : <TbArrowRight aria-hidden="true" />}
             </a>
           </Button>
         </InView>

@@ -1,10 +1,11 @@
-import { useState } from "react"
 import { TbArrowUpRight, TbMenu2, TbMoon, TbSun, TbX } from "react-icons/tb"
 import { Button } from "@/components/ui/button"
 import { Collapse } from "@/components/ui/motion-collapse"
 import { Pressable } from "@/components/ui/motion-pressable"
 import { useTheme } from "@/components/theme-provider"
 import { useLanguage } from "@/components/language-provider"
+import { useAppDispatch, useAppSelector } from "@/store/hooks"
+import { toggleMobileMenu, closeMobileMenu } from "@/store/slices/uiSlice"
 
 const links = [
   { key: "nav.about", href: "#about" },
@@ -45,11 +46,18 @@ function LangToggle({ className }) {
 }
 
 export default function SiteHeader() {
-  const [open, setOpen] = useState(false)
+  const open = useAppSelector((s) => s.ui.mobileMenuOpen)
+  const dispatch = useAppDispatch()
   const { t } = useLanguage()
 
+  function handleKeyDown(e) {
+    if (e.key === "Escape" && open) {
+      dispatch(closeMobileMenu())
+    }
+  }
+
   return (
-    <header className="sticky top-0 z-50 border-b border-border/60 bg-background/70 backdrop-blur-xl dark:border-white/[0.06] dark:bg-background/80">
+    <header onKeyDown={handleKeyDown} className="sticky top-0 z-50 border-b border-border/60 bg-background/70 backdrop-blur-xl dark:border-white/[0.06] dark:bg-background/80">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-6">
         <a
           href="#top"
@@ -70,7 +78,7 @@ export default function SiteHeader() {
           ))}
           <Button asChild className="ms-2">
             <a href="#contact">
-              {t("nav.cta")} <TbArrowUpRight />
+              {t("nav.cta")} <TbArrowUpRight aria-hidden="true" />
             </a>
           </Button>
           <div className="ms-2 flex items-center gap-2">
@@ -86,7 +94,7 @@ export default function SiteHeader() {
           <Pressable
             type="button"
             className="flex size-9 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
-            onClick={() => setOpen(!open)}
+            onClick={() => dispatch(toggleMobileMenu())}
             aria-label="Toggle navigation"
             aria-expanded={open}
           >
@@ -103,14 +111,14 @@ export default function SiteHeader() {
                 variant="ghost"
                 asChild
                 className="justify-start"
-                onClick={() => setOpen(false)}
+                onClick={() => dispatch(closeMobileMenu())}
               >
                 <a href={link.href}>{t(link.key)}</a>
               </Button>
             ))}
-            <Button asChild className="mt-2" onClick={() => setOpen(false)}>
+            <Button asChild className="mt-2" onClick={() => dispatch(closeMobileMenu())}>
               <a href="#contact">
-                {t("nav.cta")} <TbArrowUpRight />
+              {t("nav.cta")} <TbArrowUpRight aria-hidden="true" />
               </a>
             </Button>
           </div>

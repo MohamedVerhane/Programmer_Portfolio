@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useRef } from "react"
 import {
   TbArrowUpRight,
   TbBrandGithub,
@@ -14,6 +14,8 @@ import { Label } from "@/components/ui/label"
 import { InView } from "@/components/ui/motion-in-view"
 import { Textarea } from "@/components/ui/textarea"
 import { useLanguage } from "@/components/language-provider"
+import { useAppDispatch, useAppSelector } from "@/store/hooks"
+import { setStatus, clearStatus } from "@/store/slices/contactSlice"
 
 const socials = [
   { labelKey: "contact.social1", href: "https://github.com/", icon: TbBrandGithub },
@@ -23,12 +25,20 @@ const socials = [
 
 export default function Contact() {
   const { t } = useLanguage()
-  const [status, setStatus] = useState("")
+  const status = useAppSelector((s) => s.contact.status)
+  const dispatch = useAppDispatch()
+  const timerRef = useRef(null)
+
+  useEffect(() => {
+    return () => clearTimeout(timerRef.current)
+  }, [])
 
   function handleSubmit(event) {
     event.preventDefault()
-    setStatus(t("contact.status"))
+    clearTimeout(timerRef.current)
+    dispatch(setStatus(t("contact.status")))
     event.currentTarget.reset()
+    timerRef.current = setTimeout(() => dispatch(clearStatus()), 5000)
   }
 
   return (
@@ -81,6 +91,7 @@ export default function Contact() {
                     placeholder={t("contact.messagePh")}
                     className="min-h-36"
                     required
+                    minLength={10}
                   />
                 </div>
                 <Button type="submit" className="w-fit shadow-md shadow-primary/20">
@@ -102,9 +113,9 @@ export default function Contact() {
             </CardHeader>
             <CardContent className="flex flex-col gap-3">
               <Button variant="outline" asChild className="justify-start border-primary/20">
-                <a href="mailto:hello@yourname.dev">
-                  <TbMail /> hello@yourname.dev
-                  <TbArrowUpRight className="ms-auto" />
+                  <a href="mailto:hello@yourname.dev">
+                    <TbMail aria-hidden="true" /> hello@yourname.dev
+                    <TbArrowUpRight className="ms-auto" aria-hidden="true" />
                 </a>
               </Button>
               {socials.map(({ labelKey, href, icon: Icon }) => (
@@ -115,8 +126,8 @@ export default function Contact() {
                   className="justify-start hover:bg-primary/5 hover:text-primary"
                 >
                   <a href={href} target="_blank" rel="noreferrer">
-                    <Icon /> {t(labelKey)}
-                    <TbArrowUpRight className="ms-auto" />
+                    <Icon aria-hidden="true" /> {t(labelKey)}
+                    <TbArrowUpRight className="ms-auto" aria-hidden="true" />
                   </a>
                 </Button>
               ))}

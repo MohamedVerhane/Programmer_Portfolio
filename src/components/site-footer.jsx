@@ -2,6 +2,7 @@ import { useLanguage } from "@/components/language-provider"
 
 export default function SiteFooter() {
   const { t } = useLanguage()
+  const year = new Date().getFullYear()
 
   return (
     <footer className="border-t border-border/60 dark:border-white/[0.06]">
@@ -40,7 +41,7 @@ export default function SiteFooter() {
       </div>
       <div className="border-t border-border/60 dark:border-white/[0.06]">
         <div className="mx-auto max-w-6xl px-6 py-5 text-xs text-muted-foreground">
-          {t("footer.copyright")}
+          © {year} {t("footer.copyright")}
         </div>
       </div>
     </footer>

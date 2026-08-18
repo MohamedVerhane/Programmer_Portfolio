@@ -79,7 +79,7 @@ export default function Hero() {
             <HeroWords
               text={t("hero.role")}
               delay={0.3}
-              className="bg-gradient-to-r from-primary/70 to-primary bg-clip-text text-transparent"
+              className={`${lang === "ar" ? "bg-gradient-to-l" : "bg-gradient-to-r"} from-primary/70 to-primary bg-clip-text text-transparent`}
             />
           </h1>
           <motion.p
@@ -108,7 +108,7 @@ export default function Hero() {
             <Magnetic strength={0.25}>
               <Button size="lg" variant="outline" asChild className="border-primary/20">
                 <a href="#contact">
-                  {t("hero.contactMe")} <TbArrowUpRight />
+                  {t("hero.contactMe")} <TbArrowUpRight aria-hidden="true" />
                 </a>
               </Button>
             </Magnetic>

@@ -1,6 +1,9 @@
+import { useEffect } from "react"
 import { MotionConfig } from "motion/react"
-import { ThemeProvider } from "@/components/theme-provider"
-import { LanguageProvider } from "@/components/language-provider"
+import { Provider } from "react-redux"
+import { makeStore } from "@/store"
+import { ThemeEffect } from "@/components/theme-provider"
+import { LanguageEffect } from "@/components/language-provider"
 import SiteHeader from "@/components/site-header"
 import SiteFooter from "@/components/site-footer"
 import Hero from "@/components/sections/hero"
@@ -11,11 +14,30 @@ import Experience from "@/components/sections/experience"
 import Services from "@/components/sections/services"
 import Contact from "@/components/sections/contact"
 
+const store = makeStore()
+
 export default function App() {
+  useEffect(() => {
+    function handleClick(e) {
+      const link = e.target.closest('a[href^="#"]')
+      if (!link) return
+      const id = link.getAttribute("href")
+      if (!id || id === "#") return
+      const target = document.querySelector(id)
+      if (!target) return
+      e.preventDefault()
+      history.pushState(null, "", id === "#top" ? "/" : id.slice(1))
+      target.scrollIntoView({ behavior: "smooth" })
+    }
+    document.addEventListener("click", handleClick)
+    return () => document.removeEventListener("click", handleClick)
+  }, [])
+
   return (
-    <MotionConfig reducedMotion="user">
-      <LanguageProvider>
-        <ThemeProvider>
+    <Provider store={store}>
+      <ThemeEffect />
+      <LanguageEffect />
+      <MotionConfig reducedMotion="user">
         <SiteHeader />
         <main>
           <Hero />
@@ -27,8 +49,7 @@ export default function App() {
           <Contact />
         </main>
         <SiteFooter />
-        </ThemeProvider>
-      </LanguageProvider>
-    </MotionConfig>
+      </MotionConfig>
+    </Provider>
   )
 }

@@ -20,19 +20,18 @@ function InView({
           hidden: {
             opacity: 0,
             y: shouldReduceMotion ? 0 : 24,
-            transition: { duration: transitionDuration },
+            transition: { duration: transitionDuration, delay },
           },
           visible: {
             opacity: 1,
             y: 0,
-            transition: { duration: transitionDuration },
+            transition: { duration: transitionDuration, delay },
           },
         }
       }
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "0px 0px -80px 0px" }}
-      transition={{ ...transition, delay }}
       className={cn("will-change-transform", className)}
       {...props}
     >
