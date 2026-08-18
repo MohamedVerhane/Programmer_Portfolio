@@ -1,10 +1,32 @@
 import { TbArrowUpRight } from "react-icons/tb"
+import {
+  SiJavascript,
+  SiMongodb,
+  SiNextdotjs,
+  SiNodedotjs,
+  SiPostgresql,
+  SiPython,
+  SiReact,
+  SiTypescript,
+} from "react-icons/si"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { InView } from "@/components/ui/motion-in-view"
 import { Stagger, StaggerItem } from "@/components/ui/motion-stagger"
 import { useLanguage } from "@/components/language-provider"
+
+const tagIcons = {
+  "Next.js": SiNextdotjs,
+  "TypeScript": SiTypescript,
+  "PostgreSQL": SiPostgresql,
+  "React": SiReact,
+  "Node.js": SiNodedotjs,
+  "MongoDB": SiMongodb,
+  "Python": SiPython,
+  "REST API": TbArrowUpRight,
+  "JavaScript": SiJavascript,
+}
 
 const projects = [
   {
@@ -81,11 +103,15 @@ export default function Projects() {
                 <h3 className="text-xl font-semibold">{t(project.titleKey)}</h3>
                 <p className="text-sm leading-relaxed text-muted-foreground">{t(project.descKey)}</p>
                 <div className="mt-auto flex flex-wrap gap-2 pt-3">
-                  {project.tags.map((tag) => (
-                    <Badge key={tag} variant="secondary" className="border-primary/[0.06]">
-                      {tag}
-                    </Badge>
-                  ))}
+                  {project.tags.map((tag) => {
+                    const Icon = tagIcons[tag]
+                    return (
+                      <Badge key={tag} variant="secondary" className="gap-1.5 border-primary/[0.06]">
+                        {Icon && <Icon className="size-3.5" />}
+                        {tag}
+                      </Badge>
+                    )
+                  })}
                 </div>
                 <Button
                   variant="ghost"

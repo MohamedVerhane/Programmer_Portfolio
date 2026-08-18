@@ -1,9 +1,32 @@
 import { TbBriefcase } from "react-icons/tb"
+import {
+  SiCss,
+  SiDocker,
+  SiFigma,
+  SiJavascript,
+  SiNextdotjs,
+  SiNodedotjs,
+  SiPostgresql,
+  SiReact,
+  SiTypescript,
+} from "react-icons/si"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { InView } from "@/components/ui/motion-in-view"
 import { Stagger, StaggerItem } from "@/components/ui/motion-stagger"
 import { useLanguage } from "@/components/language-provider"
+
+const tagIcons = {
+  "Next.js": SiNextdotjs,
+  "Node.js": SiNodedotjs,
+  "PostgreSQL": SiPostgresql,
+  "React": SiReact,
+  "TypeScript": SiTypescript,
+  "Docker": SiDocker,
+  "JavaScript": SiJavascript,
+  "CSS": SiCss,
+  "Figma": SiFigma,
+}
 
 const jobs = [
   {
@@ -84,11 +107,15 @@ export default function Experience() {
                     {t(job.descKey)}
                   </p>
                   <div className="mt-5 flex flex-wrap gap-2">
-                    {job.tags.map((tag) => (
-                      <Badge key={tag} variant="secondary" className="border-primary/[0.06]">
-                        {tag}
-                      </Badge>
-                    ))}
+                    {job.tags.map((tag) => {
+                      const Icon = tagIcons[tag]
+                      return (
+                        <Badge key={tag} variant="secondary" className="gap-1.5 border-primary/[0.06]">
+                          {Icon && <Icon className="size-3.5" />}
+                          {tag}
+                        </Badge>
+                      )
+                    })}
                   </div>
                 </CardContent>
               </Card>

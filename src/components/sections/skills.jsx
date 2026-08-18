@@ -1,9 +1,43 @@
-import { TbCode, TbDatabase, TbServer } from "react-icons/tb"
+import { TbApi, TbCode, TbDatabase, TbLock, TbServer } from "react-icons/tb"
+import {
+  SiCss,
+  SiDocker,
+  SiExpress,
+  SiFigma,
+  SiGit,
+  SiGithub,
+  SiHtml5,
+  SiJavascript,
+  SiMongodb,
+  SiMysql,
+  SiNextdotjs,
+  SiNodedotjs,
+  SiPostgresql,
+  SiPython,
+  SiReact,
+  SiTailwindcss,
+  SiTypescript,
+} from "react-icons/si"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { InView } from "@/components/ui/motion-in-view"
 import { Stagger, StaggerItem } from "@/components/ui/motion-stagger"
 import { useLanguage } from "@/components/language-provider"
+
+const techIcons = {
+  "HTML & CSS": [SiHtml5, SiCss],
+  "JavaScript / TypeScript": [SiJavascript, SiTypescript],
+  "React & Next.js": [SiReact, SiNextdotjs],
+  "Tailwind CSS": [SiTailwindcss],
+  "Node.js & Express": [SiNodedotjs, SiExpress],
+  "Python": [SiPython],
+  "REST APIs": [TbApi],
+  "Authentication": [TbLock],
+  "PostgreSQL / MongoDB": [SiPostgresql, SiMongodb],
+  "MySQL": [SiMysql],
+  "Git & GitHub": [SiGit, SiGithub],
+  "Docker / Figma / VS Code": [SiDocker, SiFigma, TbCode],
+}
 
 const skills = [
   {
@@ -49,11 +83,17 @@ export default function Skills() {
                   <h3 className="text-lg font-semibold">{t(titleKey)}</h3>
                   <p className="text-sm leading-relaxed text-muted-foreground">{t(blurbKey)}</p>
                   <div className="flex flex-wrap gap-2">
-                    {items.map((item) => (
-                      <Badge key={item} variant="secondary" className="border-primary/[0.06]">
-                        {item}
-                      </Badge>
-                    ))}
+                    {items.map((item) => {
+                      const icons = techIcons[item]
+                      return (
+                        <Badge key={item} variant="secondary" className="gap-1.5 border-primary/[0.06]">
+                          {icons?.map((Ic, idx) => (
+                            <Ic key={idx} className="size-3.5" />
+                          ))}
+                          {item}
+                        </Badge>
+                      )
+                    })}
                   </div>
                 </CardContent>
               </Card>
