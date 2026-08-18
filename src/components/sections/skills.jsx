@@ -75,7 +75,7 @@ export default function Skills() {
         <Stagger className="grid gap-6 md:grid-cols-3">
           {skills.map(({ icon: Icon, titleKey, blurbKey, items }) => (
             <StaggerItem key={titleKey}>
-              <Card className="group transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/20 hover:shadow-md">
+              <Card className="h-full group transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/20 hover:shadow-md">
                 <CardContent className="flex flex-col gap-4 p-6">
                   <span className="flex size-12 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary/15">
                     <Icon className="size-5" />
