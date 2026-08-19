@@ -45,18 +45,24 @@ const skills = [
     titleKey: "skills.frontend",
     blurbKey: "skills.frontend.blurb",
     items: ["HTML & CSS", "JavaScript / TypeScript", "React & Next.js", "Tailwind CSS"],
+    image: "/images/skills-frontend.jpg",
+    alt: "Frontend development workspace with code on screen",
   },
   {
     icon: TbServer,
     titleKey: "skills.backend",
     blurbKey: "skills.backend.blurb",
     items: ["Node.js & Express", "Python", "REST APIs", "Authentication"],
+    image: "/images/skills-backend.jpg",
+    alt: "Backend infrastructure with server architecture diagrams",
   },
   {
     icon: TbDatabase,
     titleKey: "skills.tools",
     blurbKey: "skills.tools.blurb",
     items: ["PostgreSQL / MongoDB", "MySQL", "Git & GitHub", "Docker / Figma / VS Code"],
+    image: "/images/skills-tools.jpg",
+    alt: "Developer tools and database management interface",
   },
 ]
 
@@ -73,9 +79,18 @@ export default function Skills() {
           <h2>{t("skills.heading")}</h2>
         </InView>
         <Stagger className="grid gap-6 md:grid-cols-3">
-          {skills.map(({ icon: Icon, titleKey, blurbKey, items }) => (
+          {skills.map(({ icon: Icon, titleKey, blurbKey, items, image, alt }) => (
             <StaggerItem key={titleKey}>
-              <Card className="h-full group transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/20 hover:shadow-md">
+              <Card className="h-full group overflow-hidden transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/20 hover:shadow-md">
+                <div className="relative aspect-[16/9] overflow-hidden">
+                  <img
+                    src={image}
+                    alt={alt}
+                    loading="lazy"
+                    className="size-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                </div>
                 <CardContent className="flex flex-col gap-4 p-6">
                   <span className="flex size-12 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary/15">
                     <Icon className="size-5" />
