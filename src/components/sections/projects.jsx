@@ -44,8 +44,8 @@ const projects = [
     titleKey: "projects.p2.title",
     descKey: "projects.p2.desc",
     tags: ["React", "Node.js", "MongoDB"],
-    image: "/images/lyra-workspace.jpg",
-    alt: "Creative team collaborating around a table with laptops",
+    image: "/images/lyra-collab.jpg",
+    alt: "Designer working on UI/UX mockups at a clean workspace",
   },
   {
     number: "03",

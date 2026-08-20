@@ -50,17 +50,11 @@ export default function Hero() {
   return (
     <section id="top" className="relative overflow-hidden">
       <div aria-hidden="true" className="absolute inset-0">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
+        <img
+          src="/images/hero-bg.jpg"
+          alt=""
           className="size-full object-cover"
-          poster="/images/hero-bg.jpg"
-        >
-          <source src="/images/hero-video.mp4" type="video/mp4" />
-        </video>
+        />
         <div className={`absolute inset-0 ${textGradient}`} />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/40" />
       </div>
